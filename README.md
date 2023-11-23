@@ -23,7 +23,7 @@ CSC10108_DataVisualization_Final_Lab_Project/
 |-- docs/
 | |-- data_abstraction.xlsx
 |
-|-- src/
+|-- project/
 |
 |-- README.md
 ```
