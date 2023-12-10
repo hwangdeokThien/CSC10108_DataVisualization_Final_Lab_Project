@@ -18,10 +18,11 @@ Before getting started, make sure you have the following installed on your machi
 ```bash
 CSC10108_DataVisualization_Final_Lab_Project/
 |-- data/
-| |-- supermarket_sales.xls
+|    |-- supermarket_sales.xls
 |
 |-- docs/
-| |-- data_abstraction.xlsx
+|    |-- data_abstraction.xlsx
+|    |-- task_abstraction.pdf
 |
 |-- project/
 |
