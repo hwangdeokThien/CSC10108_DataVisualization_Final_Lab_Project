@@ -3,7 +3,7 @@ import React from "react";
 const DtVis = () => {
     return (
         <div>
-            <h2>DtVis Page</h2>
+            <h2>Dthien</h2>
         </div>
     );
 };
