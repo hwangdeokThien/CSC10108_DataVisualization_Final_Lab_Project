@@ -5,7 +5,7 @@ const DtVis = () => {
     return (
         <div>
             <Navbar name={"Visualize"} />
-            <h2>Dthien</h2>
+            <h2>Dthien testing branch</h2>
         </div>
     );
 };
