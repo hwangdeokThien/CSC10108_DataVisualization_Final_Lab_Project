@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
+import Navbar from "../../components/Navbar/Navbar";
 
 const TtVis = () => {
-  return (
-    <div>
-      <h2>TtVis Page</h2>
-    </div>
-  );
+    return (
+        <div>
+            <Navbar name={"Visualize"} />
+            <h2>TtVis Page</h2>
+        </div>
+    );
 };
 
 export default TtVis;

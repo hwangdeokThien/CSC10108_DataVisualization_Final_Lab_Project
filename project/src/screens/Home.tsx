@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar/Navbar";
 const Home: React.FC = () => {
     return (
         <div className="w-[85%] m-auto bg-white">
-            <Navbar />
+            <Navbar name={"Home"} />
             <p>hello world</p>
         </div>
     );
