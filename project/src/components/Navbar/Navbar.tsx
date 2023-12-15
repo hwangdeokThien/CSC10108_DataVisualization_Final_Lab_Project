@@ -1,41 +1,75 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { IoHomeOutline } from "react-icons/io5";
+import { FaHome, FaChartArea } from "react-icons/fa";
 
 interface NavbarProps {
+    isHome: boolean;
     name: string;
+    onATClick: () => void;
+    onCKClick: () => void;
+    onDTClick: () => void;
+    onTTClick: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ name }) => {
+const Navbar: React.FC<NavbarProps> = ({
+    name,
+    isHome,
+    onATClick,
+    onCKClick,
+    onDTClick,
+    onTTClick,
+}) => {
     const navigate = useNavigate();
     const handleHomeClick = () => {
         navigate("/");
     };
     return (
         <div className="flex flex-col w-full">
-            <div className="flex flex-row justify-between h-32 items-center pl-16 pr-10">
+            <div className="flex flex-row justify-between h-32 items-center pl-10 pr-10">
                 <div className="flex gap-4 items-center">
                     <div className="logo">
-                        <IoHomeOutline
-                            className="text-[25px] icon hover:text-[#a5a6a6]"
-                            onClick={handleHomeClick}
-                        />
+                        {isHome ? (
+                            <FaHome
+                                className="text-[25px] icon text-blue-700 hover:text-blue-500"
+                                onClick={handleHomeClick}
+                            />
+                        ) : (
+                            <FaChartArea
+                                className="text-[25px] icon text-blue-700 hover:text-blue-500"
+                                onClick={handleHomeClick}
+                            />
+                        )}
                     </div>
-                    <div className="name text-xl font-extrabold tracking-tight dark:text-white text-slate-900">
+                    <div className="name text-2xl font-extrabold tracking-tight dark:text-white text-slate-800">
                         <span onClick={handleHomeClick}>{name}</span>
                     </div>
                 </div>
 
                 <div className="flex gap-8">
-                    <li className="icon hover:text-[#a5a6a6] text-[18px]">
-                        About us
+                    <li
+                        className="boldicon hover:text-slate-700 text-[18px]"
+                        onClick={onATClick}
+                    >
+                        AT
                     </li>
-                    <div className="language text-[18px]">
-                        <select>
-                            <option value="en">English</option>
-                            <option value="vi">Vietnamese</option>
-                        </select>
-                    </div>
+                    <li
+                        className="icon hover:text-slate-700 text-[18px]"
+                        onClick={onCKClick}
+                    >
+                        CK
+                    </li>
+                    <li
+                        className="icon hover:text-slate-700 text-[18px]"
+                        onClick={onDTClick}
+                    >
+                        DT
+                    </li>
+                    <li
+                        className="icon hover:text-slate-700 text-[18px]"
+                        onClick={onTTClick}
+                    >
+                        TT
+                    </li>
                 </div>
             </div>
         </div>

@@ -36,3 +36,8 @@ li:hover::before {
 .card {
     background: #000;
 }
+
+.card-container {
+    display: flex;
+    justify-content: space-between;
+}
