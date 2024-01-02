@@ -21,8 +21,12 @@ const CK: React.FC = () => {
         navigate("/tt");
     };
 
+    const handleDashboardClick = () => {
+        navigate("/dashboard");
+    };
+
     return (
-        <div className="w-[85%] m-auto">
+        <div className="w-full m-auto">
             <Navbar
                 name={"Visualize"}
                 isHome={false}
@@ -30,6 +34,7 @@ const CK: React.FC = () => {
                 onCKClick={handleCKClick}
                 onDTClick={handleDTClick}
                 onTTClick={handleTTClick}
+                onDashboardClick={handleDashboardClick}
             />
             <h2>CkVis Page</h2>
         </div>
