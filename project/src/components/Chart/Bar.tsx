@@ -16,15 +16,20 @@ export interface Data {
 
 interface BarChartProps {
     data: Data[];
+    title: string;
+    xlabel: string;
+    ylabel: string;
 }
 
 interface AxisLeftProps {
     scale: ScaleLinear<number, number, never>;
+    ylabel: string;
 }
 
 interface AxisBottomProps {
     scale: ScaleBand<string>;
     transform: string;
+    xlabel: string;
 }
 
 interface BarsProps {
@@ -34,7 +39,7 @@ interface BarsProps {
     scaleY: AxisLeftProps["scale"];
 }
 
-function AxisLeft({ scale }: AxisLeftProps) {
+function AxisLeft({ scale, ylabel }: AxisLeftProps) {
     const ref = useRef<SVGGElement>(null);
 
     useEffect(() => {
@@ -43,23 +48,29 @@ function AxisLeft({ scale }: AxisLeftProps) {
         }
     }, [scale]);
 
+    const lines = ylabel.split("<br>").map((line, index) => (
+        <tspan x={-70} dy={index === 0 ? 0 : 15} key={index}>
+            {line}
+        </tspan>
+    ));
+
     return (
         <g ref={ref}>
             <text
                 className="axis-label"
                 fill="black"
                 rotate={0}
-                x={-50}
+                textAnchor="middle"
                 y={300}
                 fontSize={15}
             >
-                Count
+                {lines}
             </text>
         </g>
     );
 }
 
-function AxisBottom({ scale, transform }: AxisBottomProps) {
+function AxisBottom({ scale, transform, xlabel }: AxisBottomProps) {
     const ref = useRef<SVGGElement>(null);
 
     useEffect(() => {
@@ -78,7 +89,7 @@ function AxisBottom({ scale, transform }: AxisBottomProps) {
                 rotate={0}
                 fontSize={15}
             >
-                Fruit
+                {xlabel}
             </text>
         </g>
     );
@@ -101,7 +112,7 @@ function Bars({ data, height, scaleX, scaleY }: BarsProps) {
     );
 }
 
-export function BarChart({ data }: BarChartProps) {
+export function BarChart({ data, title, xlabel, ylabel }: BarChartProps) {
     const margin = { top: 100, right: 100, bottom: 100, left: 100 };
     const width = 1000 - margin.left - margin.right;
     const height = 800 - margin.top - margin.bottom;
@@ -121,13 +132,14 @@ export function BarChart({ data }: BarChartProps) {
         >
             <g transform={`translate(${margin.left}, ${margin.top})`}>
                 <text x={350} y={-45} fontSize={30}>
-                    Title
+                    {title}
                 </text>
                 <AxisBottom
                     scale={scaleX}
                     transform={`translate(0, ${height})`}
+                    xlabel={xlabel}
                 />
-                <AxisLeft scale={scaleY} />
+                <AxisLeft scale={scaleY} ylabel={ylabel} />
                 <Bars
                     data={data}
                     height={height}
