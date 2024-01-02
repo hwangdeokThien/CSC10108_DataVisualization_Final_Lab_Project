@@ -114,16 +114,16 @@ const DT: React.FC = () => {
                 <LinePlot data={[1, 2, 3, 4]} />
             </div> */}
             <div className="w-[80%] m-auto pt-5">
-                <p className="pb-5">This is testing chart</p>
+                <p className="pb-5">Câu hỏi 7:</p>
+                <p className="pb-5">Câu hỏi 8:</p>
+                <p>Khi viết thế này thì không biết kết qủa sẽ trông thế nào</p>
 
-                <div>
-                    {BarChart({
-                        data: filterDataQ8 || static_data,
-                        title: "Statistic",
-                        xlabel: "Year",
-                        ylabel: "Number <br> of <br> orders",
-                    })}
-                </div>
+                {BarChart({
+                    data: filterDataQ8 || static_data,
+                    title: "Statistic",
+                    xlabel: "Year",
+                    ylabel: "Number <br> of <br> orders",
+                })}
             </div>
         </div>
     );

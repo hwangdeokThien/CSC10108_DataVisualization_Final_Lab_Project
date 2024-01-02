@@ -24,12 +24,14 @@ interface BarChartProps {
 interface AxisLeftProps {
     scale: ScaleLinear<number, number, never>;
     ylabel: string;
+    height: number;
 }
 
 interface AxisBottomProps {
     scale: ScaleBand<string>;
     transform: string;
     xlabel: string;
+    width: number;
 }
 
 interface BarsProps {
@@ -55,7 +57,7 @@ function AxisLeft({ scale, ylabel }: AxisLeftProps) {
     ));
 
     return (
-        <g ref={ref}>
+        <g ref={ref} fontSize={15}>
             <text
                 className="axis-label"
                 fill="black"
@@ -70,7 +72,7 @@ function AxisLeft({ scale, ylabel }: AxisLeftProps) {
     );
 }
 
-function AxisBottom({ scale, transform, xlabel }: AxisBottomProps) {
+function AxisBottom({ scale, transform, xlabel, width }: AxisBottomProps) {
     const ref = useRef<SVGGElement>(null);
 
     useEffect(() => {
@@ -80,11 +82,11 @@ function AxisBottom({ scale, transform, xlabel }: AxisBottomProps) {
     }, [scale]);
 
     return (
-        <g ref={ref} transform={transform}>
+        <g ref={ref} transform={transform} fontSize={15}>
             <text
                 className="axis-label"
                 fill="black"
-                x={380}
+                x={width / 2}
                 y={50}
                 rotate={0}
                 fontSize={15}
@@ -124,9 +126,10 @@ export function BarChart({ data, title, xlabel, ylabel }: BarChartProps) {
     const scaleY = scaleLinear()
         .domain([0, Math.max(...data.map(({ value }) => value))])
         .range([height, 0]);
-
+    console.log(width);
     return (
         <svg
+            className="m-auto"
             width={width + margin.left + margin.right}
             height={height + margin.top + margin.bottom}
         >
@@ -138,8 +141,9 @@ export function BarChart({ data, title, xlabel, ylabel }: BarChartProps) {
                     scale={scaleX}
                     transform={`translate(0, ${height})`}
                     xlabel={xlabel}
+                    width={width}
                 />
-                <AxisLeft scale={scaleY} ylabel={ylabel} />
+                <AxisLeft scale={scaleY} ylabel={ylabel} height={height} />
                 <Bars
                     data={data}
                     height={height}
