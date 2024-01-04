@@ -43,14 +43,14 @@ const Home: React.FC = () => {
                         onCardClick={handleATClick}
                         name="Anh Tuan"
                         role="Team Member"
-                        avatarUrl=""
+                        avatarUrl="https://drive.google.com/uc?export=view&id=1T9Wx640kYOz7u_iXUxsRmE_YB19ucwaL"
                         backgroundUrl="https://drive.google.com/uc?export=view&id=1xk3Q_AF4QUq7GNiOOZmynHvRvVMODP2p"
                     />
                     <Card
                         onCardClick={handleCKClick}
                         name="Chi Khang"
                         role="Team Member"
-                        avatarUrl=""
+                        avatarUrl="https://drive.google.com/uc?export=view&id=105VCMn4PLmReYcNL9K38Wkskx21AraPh"
                         backgroundUrl="https://drive.google.com/uc?export=view&id=10UlERlk7nR7sbjezeR_2tvYcwSttF_H1"
                     />
                 </div>
@@ -59,14 +59,14 @@ const Home: React.FC = () => {
                         onCardClick={handleDTClick}
                         name="Duc Thien"
                         role="Team Leader"
-                        avatarUrl="https://drive.google.com/uc?export=view&id=1TFcUY_uXr3_cEhRRpoiEXcLX8nF7jZLl"
+                        avatarUrl="https://drive.google.com/uc?export=view&id=14kSMsy6VVlWUq1qLTEtTWehlsUTt847N"
                         backgroundUrl="https://drive.google.com/uc?export=view&id=1_1_RKTCzhfvPwcKrbvW_DSscelm2fNet"
                     />
                     <Card
                         onCardClick={handleTTClick}
                         name="Thanh Thien"
                         role="Team Member"
-                        avatarUrl=""
+                        avatarUrl="https://drive.google.com/uc?export=view&id=1pPGdDp4qmtKGhiPji8S14fBw-YGvlf_J"
                         backgroundUrl="https://drive.google.com/uc?export=view&id=1MvI4j3Sj4OHC3sOqZMPo2smh9aOYIqUN"
                     />
                 </div>

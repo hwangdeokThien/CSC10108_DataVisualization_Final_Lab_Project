@@ -19,6 +19,8 @@ interface BarChartProps {
     title: string;
     xlabel: string;
     ylabel: string;
+    height: number;
+    width: number;
 }
 
 interface AxisLeftProps {
@@ -41,7 +43,7 @@ interface BarsProps {
     scaleY: AxisLeftProps["scale"];
 }
 
-function AxisLeft({ scale, ylabel }: AxisLeftProps) {
+function AxisLeft({ scale, ylabel, height }: AxisLeftProps) {
     const ref = useRef<SVGGElement>(null);
 
     useEffect(() => {
@@ -63,7 +65,7 @@ function AxisLeft({ scale, ylabel }: AxisLeftProps) {
                 fill="black"
                 rotate={0}
                 textAnchor="middle"
-                y={300}
+                y={height / 2}
                 fontSize={15}
             >
                 {lines}
@@ -90,6 +92,7 @@ function AxisBottom({ scale, transform, xlabel, width }: AxisBottomProps) {
                 y={50}
                 rotate={0}
                 fontSize={15}
+                textAnchor="middle"
             >
                 {xlabel}
             </text>
@@ -114,10 +117,10 @@ function Bars({ data, height, scaleX, scaleY }: BarsProps) {
     );
 }
 
-export function BarChart({ data, title, xlabel, ylabel }: BarChartProps) {
+export function BarChart({ data, title, xlabel, ylabel, height, width }: BarChartProps) {
     const margin = { top: 100, right: 100, bottom: 100, left: 100 };
-    const width = 1000 - margin.left - margin.right;
-    const height = 800 - margin.top - margin.bottom;
+    width = width - margin.left - margin.right;
+    height = height - margin.top - margin.bottom;
 
     const scaleX = scaleBand()
         .domain(data.map(({ label }) => label))
@@ -134,7 +137,7 @@ export function BarChart({ data, title, xlabel, ylabel }: BarChartProps) {
             height={height + margin.top + margin.bottom}
         >
             <g transform={`translate(${margin.left}, ${margin.top})`}>
-                <text x={350} y={-45} fontSize={30}>
+                <text x={width / 2} y={-45} fontSize={25} textAnchor="middle">
                     {title}
                 </text>
                 <AxisBottom

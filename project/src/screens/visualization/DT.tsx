@@ -55,7 +55,6 @@ const DT: React.FC = () => {
             return formattedDate;
         }
 
-        // Return the original string if parsing fails
         return dateString;
     }
 
@@ -116,13 +115,20 @@ const DT: React.FC = () => {
             <div className="w-[80%] m-auto pt-5">
                 <p className="pb-5">Câu hỏi 7:</p>
                 <p className="pb-5">Câu hỏi 8:</p>
-                <p>Khi viết thế này thì không biết kết qủa sẽ trông thế nào</p>
+                <p className="font-sans">
+                    <text className="font-bold mr-1 ml-10">
+                        Yêu cầu:
+                    </text>
+                    Xác định số lượng đơn hàng có giá trị trên 200$ trong năm 2019.
+                </p>
 
                 {BarChart({
                     data: filterDataQ8 || static_data,
                     title: "Statistic",
                     xlabel: "Year",
                     ylabel: "Number <br> of <br> orders",
+                    height: 600,
+                    width: 800,
                 })}
             </div>
         </div>
