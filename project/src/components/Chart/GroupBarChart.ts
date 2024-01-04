@@ -1,52 +1,55 @@
 import * as d3 from "d3";
-    datapath = "./../data/q3.csv";
-    data = d3.csv(datapath);
-    productline = d3.rollup(data, v => v.length, d => d.ProductLine, d => d.Gender)
+
+const datapath = "./../data/q3.csv";
+const data = await d3.dsv(',', datapath);
+
+//const data = d3.csv(datapath);
+const productline = d3.rollup(data, v => v.length, d => d.ProductLine, d => d.Gender)
 
     
-    aggregate = Array.from(productline, ([ProductLine, count]) => {
-        obj = {};
+const aggregate = Array.from(productline, ([ProductLine, count]) => {
+    const obj = {};
         for (const [Gender, num] of count) {
         obj.ProductLine = ProductLine;
         obj[Gender] = num;
         }
         return obj;
     })
-    height = 500
-    //var width = 800
-    margin = ({
+    const height = 500
+    const width = 800
+    const margin = ({
         top: 10,
         right: 10,
         bottom: 40,
         left: 35
     })
-    xDomain = aggregate.map(d => d["ProductLine"])
+    const xDomain = aggregate.map(d => d["ProductLine"])
 
-    xScale = d3
+    const xScale = d3
         .scaleBand()
         .domain(xDomain)
         .range([margin.left, width - margin.right - margin.left])
         .padding(0.1)
 
-    xAxis = d3.axisBottom(xScale).tickSizeOuter(0)
-    keys = Object.keys(aggregate[0]).slice(1)
+        const xAxis = d3.axisBottom(xScale).tickSizeOuter(0)
+        const keys = Object.keys(aggregate[0]).slice(1)
 
-    x1 = d3
+        const x1 = d3
         .scaleBand()
         .domain(keys)
         .rangeRound([0, xScale.bandwidth()]) // here we use rangeRound instead of range because we're using values computed by xScale, which may not be whole numbers, and we need whole numbers to avoid errors.
         .padding(0.05)
 
-    yScale = d3
+        const yScale = d3
     .scaleLinear()
         .domain([0, d3.max(aggregate, d => d3.max(keys, key => d[key]))]) // in each key, look for the maximum number
         .rangeRound([height - margin.bottom, margin.top])
     //setFilterDataQ3(aggregate);
 
-    yAxis = d3.axisLeft(yScale).tickSizeOuter(0)
+    const yAxis = d3.axisLeft(yScale).tickSizeOuter(0)
 
-    color = d3.scaleOrdinal(["rgb(94, 54, 106)", "#0CCA98"])
-    svg = d3.select(DOM.svg(width, height));
+    const color = d3.scaleOrdinal(["rgb(94, 54, 106)", "#0CCA98"])
+    const svg = d3.select(DOM.svg(width, height));
 
     // draw the bars
     svg
@@ -54,7 +57,7 @@ import * as d3 from "d3";
         .selectAll("g")
         .data(aggregate)
         .join("g")
-        .attr("transform", d => `translate(${xScale(d["year"])},0)`) // place each bar along the x-axis at the place defined by the xScale variable
+        .attr("transform", d => `translate(${xScale(d["ProductLine"])},0)`) // place each bar along the x-axis at the place defined by the xScale variable
         .selectAll("rect")
         .data(d => keys.map(key => ({ key, value: d[key] }))) // use the Male/Female keys to access the data separately
         .join('rect')
@@ -87,4 +90,4 @@ import * as d3 from "d3";
 
     // render the whole chart
     // nothing new here
-    return svg.node();
+    //return svg.node();

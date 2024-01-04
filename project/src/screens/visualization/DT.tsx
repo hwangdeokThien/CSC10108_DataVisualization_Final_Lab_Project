@@ -88,7 +88,7 @@ const DT: React.FC = () => {
                 value,
             })
         );
-
+        console.log(result);
         setFilterDataQ8(result);
     };
 
