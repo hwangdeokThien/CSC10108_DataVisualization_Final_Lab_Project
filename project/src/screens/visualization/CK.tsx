@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import { parse, isValid, format } from "date-fns";
 import { Data, BarChart } from "../../components/Chart/Bar";
+//import { GroupedBarChart} from "../../components/Chart/GroupBarChart";
 //import { useEffect } from "react";
 
 const static_data: Data[] = [
@@ -36,16 +37,15 @@ const CK: React.FC = () => {
         navigate("/dashboard");
     };
 
-    const [filterDataQ8, setFilterDataQ8] = useState<Data[]>();
+    //const [filterDataQ8, setFilterDataQ8] = useState<Data[]>();
+
+    const [filterDataQ3, setFilterDataQ3] = useState<Data[]>();
 
     const fetchData = async (viewOption: number = 2) => {
-        const filePath: string = "../../data/supermarket_sales.csv";
-
-        const readData = await d3.dsv(",", filePath);  
-        
-        //console.log(readData);
-        var gender = d3.rollup(readData, v => v.length, d => d.ProfuctID, d => d.gender)
-        console.log(gender);
+        const datapath: string = "./../data/q3.csv";
+        const data = await d3.dsv(",", datapath);
+        return data
+        var productline = d3.rollup(data, v => v.length, d => d.ProductLine, d => d.Gender)
     };
 
     useEffect(() => {
@@ -69,23 +69,16 @@ const CK: React.FC = () => {
             </div> */}
             <div className="w-[80%] m-auto pt-5">
                 <p className="pb-5">Câu hỏi 3: Statistics on the number of male/female customers who have made purchases for each product type. </p>
+                <script src="../../components/Chart/GroupBarChart.js"> 
+
+                </script>
                 <p className="pb-5">Câu hỏi 4: Identify the date (day, month, year) with the highest number of customer visits for purchases.</p>
                 <p>Khi viết thế này thì không biết kết qủa sẽ trông thế nào</p>
-                {BarChart({
-                    data: filterDataQ8|| static_data,
-                    title: "Statistic",
-                    xlabel: "",
-                    ylabel: "Number <br> of <br> orders",
-                })}
+                
             </div>
         </div>
     );
 };
-export function GroupedBarChart(){
-    const filePath: string = "../../data/supermarket_sales.csv";
-    const Data = d3.csv(filePath);
-    
-    
-}
+
 
 export default CK;
