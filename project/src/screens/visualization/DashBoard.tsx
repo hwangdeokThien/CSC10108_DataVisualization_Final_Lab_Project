@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 
-const TT: React.FC = () => {
+const DashBoard: React.FC = () => {
     const navigate = useNavigate();
 
     const handleATClick = () => {
@@ -28,7 +28,7 @@ const TT: React.FC = () => {
     return (
         <div className="w-full m-auto">
             <Navbar
-                name={"Visualize"}
+                name={"Dash Board"}
                 isHome={false}
                 onATClick={handleATClick}
                 onCKClick={handleCKClick}
@@ -36,9 +36,9 @@ const TT: React.FC = () => {
                 onTTClick={handleTTClick}
                 onDashboardClick={handleDashboardClick}
             />
-            <h2>TtVis Page</h2>
+            {/* <h2>Dashboard Page</h2> */}
         </div>
     );
 };
 
-export default TT;
+export default DashBoard;

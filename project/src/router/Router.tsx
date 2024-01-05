@@ -6,6 +6,7 @@ import AT from "../screens/visualization/AT";
 import CK from "../screens/visualization/CK";
 import DT from "../screens/visualization/DT";
 import TT from "../screens/visualization/AT";
+import DashBoard from "../screens/visualization/DashBoard";
 
 const AppRouter: React.FC = () => {
     return (
@@ -17,6 +18,7 @@ const AppRouter: React.FC = () => {
                 <Route path="/ck" element={<CK />} />
                 <Route path="/dt" element={<DT />} />
                 <Route path="/tt" element={<TT />} />
+                <Route path="/dashboard" element={<DashBoard />} />
             </Routes>
         </Router>
     );
