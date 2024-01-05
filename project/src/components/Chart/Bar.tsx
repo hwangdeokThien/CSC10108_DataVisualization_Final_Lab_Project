@@ -106,6 +106,7 @@ function Bars({ data, height, scaleX, scaleY }: BarsProps) {
             {data.map(({ value, label }) => (
                 <rect
                     key={`bar-${label}`}
+                    //rotate={label}
                     x={scaleX(label)}
                     y={scaleY(value)}
                     width={scaleX.bandwidth()}
@@ -133,9 +134,15 @@ export function BarChart({
         .domain(data.map(({ label }) => label))
         .range([0, width])
         .padding(0.5);
+        
     const scaleY = scaleLinear()
         .domain([0, Math.max(...data.map(({ value }) => value))])
         .range([height, 0]);
+<<<<<<< Updated upstream
+=======
+    console.log(width);
+    
+>>>>>>> Stashed changes
     return (
         <svg
             className="m-auto"
@@ -148,8 +155,10 @@ export function BarChart({
                 </text>
                 <AxisBottom
                     scale={scaleX}
+                    
                     transform={`translate(0, ${height})`}
                     xlabel={xlabel}
+                    
                     width={width}
                 />
                 <AxisLeft scale={scaleY} ylabel={ylabel} height={height} />
