@@ -36,7 +36,7 @@ const AT: React.FC = () => {
                 onTTClick={handleTTClick}
                 onDashboardClick={handleDashboardClick}
             />
-            <h2>AtVis Page</h2>
+            {/* <h2>AtVis Page</h2> */}
         </div>
     );
 };
