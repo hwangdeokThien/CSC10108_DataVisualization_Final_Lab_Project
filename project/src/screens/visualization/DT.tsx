@@ -141,9 +141,47 @@ const DT: React.FC = () => {
             <div className="w-[80%] m-auto pt-5">
                 <p className="">Câu hỏi 7:</p>
                 <p className="font-sans pt-2 pb-5">
-                    <text className="font-bold mr-1 ml-10">Yêu cầu:</text>
-                    Hoạt động mua hàng (dựa trên tổng số đơn hàng đã thanh toán)
-                    của cửa hàng theo thời gian.
+                    <div>
+                        <text className="font-bold mr-1 ml-10">Yêu cầu:</text>
+                        Hoạt động mua hàng (dựa trên tổng số đơn hàng đã thanh
+                        toán) của cửa hàng theo thời gian.
+                    </div>
+
+                    <div className="pt-5">
+                        <text className="font-bold mr-1 ml-10">
+                            Thiết kế biểu đồ:
+                        </text>
+                        <div className="pl-14 pt-2">
+                            Ở trong yêu cầu này, ta sẽ sử dụng hai thuộc tính là
+                            Date để xác định thời gian và CNT(Invoice ID) để đếm
+                            số lượng các đơn của cửa hàng.
+                        </div>
+                        <div className="pl-14 pt-5">
+                            Ta sẽ sử dụng các kênh sau:
+                        </div>
+                        <div className="pl-14 pt-2">
+                            - Vị trí theo chiều dọc: thuộc tính số lượng các đơn
+                            hàng
+                        </div>
+                        <div className="pl-14 pt-2">
+                            - Vị trí theo chiều ngang: thuộc tính thời gian
+                            (tuần)
+                        </div>{" "}
+                        <div className="pl-14 pt-2">
+                            - Màu sắc để tăng hiệu quả biểu đạt{" "}
+                        </div>
+                        <div className="pl-14 pt-5">
+                            Để biểu diễn các giá trị ta đánh dấu bằng cách sử
+                            dụng Points vì các giá trị số lượng đơn hàng và thời
+                            gian (biểu diễn bằng số) đều là các đại lượng Q
+                            (values).
+                        </div>
+                        <div className="pl-14 pt-5">
+                            Để thể hiện được tính thay đổi theo thời gian trong
+                            hoạt động mua bán thì ta sẽ kết nối các điểm giá
+                            trị, tạo thành line chart.
+                        </div>
+                    </div>
                 </p>
 
                 {LineChart({
@@ -157,9 +195,44 @@ const DT: React.FC = () => {
 
                 <p className="">Câu hỏi 8:</p>
                 <p className="font-sans pt-2 pb-5">
-                    <text className="font-bold mr-1 ml-10">Yêu cầu:</text>
-                    Xác định số lượng đơn hàng có giá trị trên 200$ trong năm
-                    2019.
+                    <div>
+                        <text className="font-bold mr-1 ml-10">Yêu cầu:</text>
+                        Xác định số lượng đơn hàng có giá trị trên 200$ trong
+                        năm 2019.
+                    </div>
+
+                    <div className="pt-5">
+                        <text className="font-bold mr-1 ml-10">
+                            Thiết kế biểu đồ:
+                        </text>
+                        <div className="pl-14 pt-2">
+                            Trong yêu cầu này ta sẽ sử dụng ba thuộc tính, bao
+                            gồm, CNT(Invoice-ID) để đếm số lượng đơn hàng, cogs
+                            để xác định điều kiện lớn hơn 200 của đơn hàng, và
+                            Date để xác định thời điểm thanh toán (tháng).
+                        </div>
+                        <div className="pl-14 pt-5">
+                            Ta sẽ sử dụng các kênh sau:
+                        </div>
+                        <div className="pl-14 pt-2">
+                            - Vị trí theo chiều ngang: thuộc tính thời gian
+                            (Tháng)
+                        </div>
+                        <div className="pl-14 pt-2">
+                            - Vị trí theo chiều dọc: thuộc tính số đơn hàng
+                        </div>{" "}
+                        <div className="pl-14 pt-2">
+                            - Màu sắc để tăng hiệu quả biểu đạt{" "}
+                        </div>
+                        <div className="pl-14 pt-2">
+                            - Nhãn để xác định được chính xác số lượng đơn hàng
+                        </div>
+                        <div className="pl-14 pt-5">
+                            Để biểu diễn số lượng các đơn hàng (Q, value) tại
+                            các tháng cụ thể (C, key) thì ta sử dụng biểu đồ cột
+                            dùng line kết hợp với size để đánh dấu.
+                        </div>
+                    </div>
                 </p>
 
                 {BarChart({
