@@ -138,11 +138,8 @@ export function BarChart({
     const scaleY = scaleLinear()
         .domain([0, Math.max(...data.map(({ value }) => value))])
         .range([height, 0]);
-<<<<<<< Updated upstream
-=======
     console.log(width);
     
->>>>>>> Stashed changes
     return (
         <svg
             className="m-auto"
