@@ -79,7 +79,13 @@ function AxisBottom({ scale, transform, xlabel, width }: AxisBottomProps) {
 
     useEffect(() => {
         if (ref.current) {
-            select(ref.current).call(axisBottom(scale));
+            select(ref.current).call(axisBottom(scale))
+            .selectAll("text")
+            .style("font", "9px times")
+    .attr("x", 9)
+    .attr("dy", ".35em")
+    .attr("transform", "rotate(90)")
+    .style("text-anchor", "start")
         }
     }, [scale]);
 
@@ -151,7 +157,7 @@ export function BarChart({
                     {title}
                 </text>
                 <AxisBottom
-                    
+                    scale={scaleX}
                     transform={`translate(0, ${height})`}
                     xlabel={xlabel}
                     

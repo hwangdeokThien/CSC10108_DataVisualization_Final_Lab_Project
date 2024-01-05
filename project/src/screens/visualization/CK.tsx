@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import { parse, isValid, format } from "date-fns";
-import { Data, BarChart } from "../../components/Chart/Bar";
+import { Data, BarChart } from "../../components/Chart/BarCharQ4";
 import { DataDBC, DualBarChart } from "../../components/Chart/DualBarChart";
 
 //import { GroupedBarChart} from "../../components/Chart/GroupBarChart";
