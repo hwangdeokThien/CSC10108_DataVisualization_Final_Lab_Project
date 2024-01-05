@@ -139,7 +139,7 @@ const DT: React.FC = () => {
             />
 
             <div className="w-[80%] m-auto pt-5">
-                <p className="">Câu hỏi 7:</p>
+                <p className="font-bold font-sans">Câu hỏi 7:</p>
                 <p className="font-sans pt-2 pb-5">
                     <div>
                         <text className="font-bold mr-1 ml-10">Yêu cầu:</text>
@@ -193,7 +193,51 @@ const DT: React.FC = () => {
                     width: 800,
                 })}
 
-                <p className="">Câu hỏi 8:</p>
+                <p className="font-sans pt-2 pb-5">
+                    <div>
+                        <text className="font-bold mr-1 ml-10">
+                            Đánh giá biểu đồ:
+                        </text>
+                        <div className="pl-14 pt-2">
+                            - Nguyên tắc biểu đạt: Biểu đồ trên không thực hiện
+                            biểu diễn trên toàn bộ tập dữ liệu mà biễu diễn dữ
+                            liệu tương ứng với năm 2019, vì khoảng thời gian
+                            trong dữ liệu chỉ kéo dài trong 3 tháng đầu tiên, do
+                            đó để thể hiện tính liên tục trong thời gian từ năm
+                            2019 sang năm 2020 là không thể. Đối với các thông
+                            tin được biểu diễn thì không có sẵn trong tập dữ
+                            liệu mà phải cài đặt thêm (tính toán theo tuần, và
+                            đếm số lượng đơn hàng).
+                        </div>
+                        <div className="pl-14 pt-2">
+                            - Độ chính xác: Vì biểu sử dụng các kênh vị trí
+                            (positions) nên ta có thể tính độ chính xác bằng:
+                            Log2(1 + 0.125) = 0.17
+                        </div>{" "}
+                        <div className="pl-14 pt-2">
+                            - Khả năng phân biệt: Thuộc tính Time phân biệt với
+                            nhau do mang các giá trị khác nhau khi xét đến vị
+                            trí trên trục. Thuộc tính CNT(Invoice-ID) cũng phân
+                            biệt với nhau do mang giá trị khác nhau khi xét đến
+                            vị trí trên trục.
+                        </div>
+                        <div className="pl-14 pt-2">
+                            - Khả năng tách biệt: Các kênh vị trí và màu sắc là
+                            tách biệt với nhau.
+                        </div>
+                        <div className="pl-14 pt-2">
+                            - Khả năng làm nổi bật: Không có tính năng làm nổi
+                            bật mà chỉ thể hiện sự thay đổi chung trong số lượng
+                            đơn hàng mua bán theo thời gian.
+                        </div>
+                        <div className="pl-14 pt-2">
+                            - Khả năng phân tách nhóm: Có một nhóm bao gồm tất
+                            cả các điểm dữ liệu được liên kết với nhau.
+                        </div>
+                    </div>
+                </p>
+
+                <p className="font-bold font-sans pt-20">Câu hỏi 8:</p>
                 <p className="font-sans pt-2 pb-5">
                     <div>
                         <text className="font-bold mr-1 ml-10">Yêu cầu:</text>
@@ -243,6 +287,47 @@ const DT: React.FC = () => {
                     height: 600,
                     width: 800,
                 })}
+
+                <p className="font-sans pt-2 pb-5">
+                    <div>
+                        <text className="font-bold mr-1 ml-10">
+                            Đánh giá biểu đồ:
+                        </text>
+                        <div className="pl-14 pt-2">
+                            - Nguyên tắc biểu đạt: Biểu đồ trên không thực hiện
+                            biểu diễn trên toàn bộ tập dữ liệu mà biễu diễn dữ
+                            liệu tương ứng với năm 2019, vì khoảng thời gian
+                            trong dữ liệu chỉ kéo dài trong 3 tháng đầu tiên.
+                            Đối với các thông tin được biểu diễn thì không có
+                            sẵn trong tập dữ liệu mà phải cài đặt thêm (đếm số
+                            lượng đơn hàng có giá trị trên 200).
+                        </div>
+                        <div className="pl-14 pt-2">
+                            - Độ chính xác: Vì đây là biểu đồ cột sử dụng các
+                            kênh vị trí (positions) nên ta có thể tính độ chính
+                            xác bằng: Log2(1 + 0.125) = 0.17
+                        </div>{" "}
+                        <div className="pl-14 pt-2">
+                            - Khả năng phân biệt: Thuộc tính Time phân biệt với
+                            nhau do có 3 tháng tách biệt, được ngăn cách. Thuộc
+                            tính CNT(Invoice-ID) cũng phân biệt với nhau do mang
+                            giá trị khác nhau khi xét đến vị trí trên trục.
+                        </div>
+                        <div className="pl-14 pt-2">
+                            - Khả năng tách biệt: Các kênh vị trí và màu sắc là
+                            tách biệt với nhau. Và nhãn không ảnh hưởng đến các
+                            kênh khác.
+                        </div>
+                        <div className="pl-14 pt-2">
+                            - Khả năng làm nổi bật: Không có tính năng làm nổi
+                            bật, chỉ thể hiện số lượng tương ứng với mỗi tháng.
+                        </div>
+                        <div className="pl-14 pt-2">
+                            - Khả năng phân tách nhóm: Không có nhóm bao hàm hay
+                            kết nối cụ thể.
+                        </div>
+                    </div>
+                </p>
             </div>
         </div>
     );
