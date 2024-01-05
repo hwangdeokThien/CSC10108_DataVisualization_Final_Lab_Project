@@ -104,14 +104,24 @@ function Bars({ data, height, scaleX, scaleY }: BarsProps) {
     return (
         <>
             {data.map(({ value, label }) => (
-                <rect
-                    key={`bar-${label}`}
-                    x={scaleX(label)}
-                    y={scaleY(value)}
-                    width={scaleX.bandwidth()}
-                    height={height - scaleY(value)}
-                    fill="teal"
-                />
+                <g key={`bar-group-${label}`}>
+                    <rect
+                        x={scaleX(label)}
+                        y={scaleY(value)}
+                        width={scaleX.bandwidth()}
+                        height={height - scaleY(value)}
+                        fill="teal"
+                    />
+                    <text
+                        x={scaleX(label)! + scaleX.bandwidth() / 2}
+                        y={scaleY(value) - 5}
+                        fontSize={12}
+                        fill="black"
+                        textAnchor="middle"
+                    >
+                        {value}
+                    </text>
+                </g>
             ))}
         </>
     );

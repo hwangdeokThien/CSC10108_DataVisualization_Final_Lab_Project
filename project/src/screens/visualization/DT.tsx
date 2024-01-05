@@ -142,15 +142,15 @@ const DT: React.FC = () => {
                 <p className="">Câu hỏi 7:</p>
                 <p className="font-sans pt-2 pb-5">
                     <text className="font-bold mr-1 ml-10">Yêu cầu:</text>
-                    So sánh hoạt động mua hàng (dựa trên tổng số đơn hàng đã
-                    thanh toán) của cửa hàng theo thời gian.
+                    Hoạt động mua hàng (dựa trên tổng số đơn hàng đã thanh toán)
+                    của cửa hàng theo thời gian.
                 </p>
 
                 {LineChart({
                     data: filterDataQ7 || [],
-                    title: "Statistic",
-                    xlabel: "Time",
-                    ylabel: "Number <br> of <br> invoice",
+                    title: "Purchasing activity of the store over time",
+                    xlabel: "Time (week)",
+                    ylabel: "Number <br> of <br> invoices",
                     height: 600,
                     width: 800,
                 })}
@@ -164,8 +164,8 @@ const DT: React.FC = () => {
 
                 {BarChart({
                     data: filterDataQ8 || [],
-                    title: "Statistic",
-                    xlabel: "Year",
+                    title: "The number of orders worth over 200$ over time",
+                    xlabel: "Time (month)",
                     ylabel: "Number <br> of <br> orders",
                     height: 600,
                     width: 800,

@@ -101,8 +101,8 @@ function Line({ data, scaleX, scaleY }: LineProps) {
         <>
             <path
                 fill="none"
-                stroke="currentColor"
-                strokeWidth={1.5}
+                stroke="#1f77b4"
+                strokeWidth={3}
                 d={line(data) || undefined}
             />
             {data.map((d, i) => (
@@ -110,8 +110,8 @@ function Line({ data, scaleX, scaleY }: LineProps) {
                     key={`point-${i}`}
                     cx={scaleX(d.x) || 0}
                     cy={scaleY(d.y) || 0}
-                    r={4}
-                    fill="currentColor"
+                    r={5}
+                    fill="#1f77b4"
                 />
             ))}
         </>
