@@ -36,7 +36,7 @@ const DashBoard: React.FC = () => {
                 onTTClick={handleTTClick}
                 onDashboardClick={handleDashboardClick}
             />
-            <h2>Dashboard Page</h2>
+            {/* <h2>Dashboard Page</h2> */}
         </div>
     );
 };

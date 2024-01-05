@@ -4,13 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import { parse, isValid, format } from "date-fns";
 import { Data, BarChart } from "../../components/Chart/Bar";
-
-const static_data: Data[] = [
-    { label: "Apples", value: 100 },
-    { label: "Bananas", value: 200 },
-    { label: "Oranges", value: 50 },
-    { label: "Kiwis", value: 150 },
-];
+import { DataPoint, LineChart } from "../../components/Chart/Line";
 
 const DT: React.FC = () => {
     const navigate = useNavigate();
@@ -37,6 +31,7 @@ const DT: React.FC = () => {
 
     // const [data, setData] = useState<d3.DSVRowArray<string>>();
     const [filterDataQ8, setFilterDataQ8] = useState<Data[]>();
+    const [filterDataQ7, setFilterDataQ7] = useState<DataPoint[]>();
 
     function formatDate(dateString: string) {
         const formats = ["MM/dd/yyyy", "yyyy-MM-dd", "MM-dd-yyyy", "dd-MMM-yy"];
@@ -57,6 +52,39 @@ const DT: React.FC = () => {
 
         return dateString;
     }
+
+    const fetchDataQ7 = async (selectedYear: number) => {
+        const filePath: string = "../../data/supermarket_sales.csv";
+        const readData = await d3.dsv(",", filePath);
+
+        const filteredOrders = readData.filter(
+            (order) =>
+                parseFloat(order.cogs.replace(",", ".")) > 200 &&
+                new Date(order.Date).getFullYear() === selectedYear
+        );
+
+        const orderCounts: { [key: string]: number } = {};
+
+        filteredOrders.forEach((order) => {
+            const dateString = formatDate(order.Date);
+            const weekNumber = format(new Date(dateString), "I");
+
+            orderCounts[weekNumber] = (orderCounts[weekNumber] || 0) + 1;
+        });
+
+        const result: DataPoint[] = Object.entries(orderCounts).map(
+            ([x, y]) => ({
+                x: parseInt(x),
+                y,
+            })
+        );
+
+        setFilterDataQ7(result);
+    };
+
+    useEffect(() => {
+        fetchDataQ7(2019);
+    }, []);
 
     const fetchData = async (viewOption: number = 2) => {
         const filePath: string = "../../data/supermarket_sales.csv";
@@ -88,7 +116,7 @@ const DT: React.FC = () => {
                 value,
             })
         );
-        console.log(result);
+        // console.log(result);
         setFilterDataQ8(result);
     };
 
@@ -109,21 +137,33 @@ const DT: React.FC = () => {
                 onTTClick={handleTTClick}
                 onDashboardClick={handleDashboardClick}
             />
-            {/* <div className="w-[85%] m-auto">
-                <LinePlot data={[1, 2, 3, 4]} />
-            </div> */}
+
             <div className="w-[80%] m-auto pt-5">
-                <p className="pb-5">Câu hỏi 7:</p>
-                <p className="pb-5">Câu hỏi 8:</p>
-                <p className="font-sans">
-                    <text className="font-bold mr-1 ml-10">
-                        Yêu cầu:
-                    </text>
-                    Xác định số lượng đơn hàng có giá trị trên 200$ trong năm 2019.
+                <p className="">Câu hỏi 7:</p>
+                <p className="font-sans pt-2 pb-5">
+                    <text className="font-bold mr-1 ml-10">Yêu cầu:</text>
+                    So sánh hoạt động mua hàng (dựa trên tổng số đơn hàng đã
+                    thanh toán) của cửa hàng theo thời gian.
+                </p>
+
+                {LineChart({
+                    data: filterDataQ7 || [],
+                    title: "Statistic",
+                    xlabel: "Time",
+                    ylabel: "Number <br> of <br> invoice",
+                    height: 600,
+                    width: 800,
+                })}
+
+                <p className="">Câu hỏi 8:</p>
+                <p className="font-sans pt-2 pb-5">
+                    <text className="font-bold mr-1 ml-10">Yêu cầu:</text>
+                    Xác định số lượng đơn hàng có giá trị trên 200$ trong năm
+                    2019.
                 </p>
 
                 {BarChart({
-                    data: filterDataQ8 || static_data,
+                    data: filterDataQ8 || [],
                     title: "Statistic",
                     xlabel: "Year",
                     ylabel: "Number <br> of <br> orders",

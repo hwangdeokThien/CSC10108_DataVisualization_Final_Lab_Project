@@ -117,7 +117,14 @@ function Bars({ data, height, scaleX, scaleY }: BarsProps) {
     );
 }
 
-export function BarChart({ data, title, xlabel, ylabel, height, width }: BarChartProps) {
+export function BarChart({
+    data,
+    title,
+    xlabel,
+    ylabel,
+    height,
+    width,
+}: BarChartProps) {
     const margin = { top: 100, right: 100, bottom: 100, left: 100 };
     width = width - margin.left - margin.right;
     height = height - margin.top - margin.bottom;
@@ -129,7 +136,6 @@ export function BarChart({ data, title, xlabel, ylabel, height, width }: BarChar
     const scaleY = scaleLinear()
         .domain([0, Math.max(...data.map(({ value }) => value))])
         .range([height, 0]);
-    console.log(width);
     return (
         <svg
             className="m-auto"
@@ -137,7 +143,7 @@ export function BarChart({ data, title, xlabel, ylabel, height, width }: BarChar
             height={height + margin.top + margin.bottom}
         >
             <g transform={`translate(${margin.left}, ${margin.top})`}>
-                <text x={width / 2} y={-45} fontSize={25} textAnchor="middle">
+                <text x={width / 2} y={-55} fontSize={20} textAnchor="middle">
                     {title}
                 </text>
                 <AxisBottom
