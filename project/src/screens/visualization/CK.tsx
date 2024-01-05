@@ -102,7 +102,7 @@ const CK: React.FC = () => {
 
             orderCounts[key] = (orderCounts[key] || 0) + 1;
         });
-
+        
         const result: Data[] = Object.entries(orderCounts).map(
             ([label, value]) => ({
                 label,
