@@ -79,7 +79,13 @@ function AxisBottom({ scale, transform, xlabel, width }: AxisBottomProps) {
 
     useEffect(() => {
         if (ref.current) {
-            select(ref.current).call(axisBottom(scale));
+            select(ref.current).call(axisBottom(scale))
+            .selectAll("text")
+            .style("font", "9px times")
+    .attr("x", 9)
+    .attr("dy", ".35em")
+    .attr("transform", "rotate(90)")
+    .style("text-anchor", "start")
         }
     }, [scale]);
 
@@ -104,24 +110,14 @@ function Bars({ data, height, scaleX, scaleY }: BarsProps) {
     return (
         <>
             {data.map(({ value, label }) => (
-                <g key={`bar-group-${label}`}>
-                    <rect
-                        x={scaleX(label)}
-                        y={scaleY(value)}
-                        width={scaleX.bandwidth()}
-                        height={height - scaleY(value)}
-                        fill="teal"
-                    />
-                    <text
-                        x={scaleX(label)! + scaleX.bandwidth() / 2}
-                        y={scaleY(value) - 5}
-                        fontSize={12}
-                        fill="black"
-                        textAnchor="middle"
-                    >
-                        {value}
-                    </text>
-                </g>
+                <rect
+                    key={`bar-${label}`}
+                    x={scaleX(label)}
+                    y={scaleY(value)}
+                    width={scaleX.bandwidth()}
+                    height={height - scaleY(value)}
+                    fill="teal"
+                />
             ))}
         </>
     );
@@ -142,11 +138,14 @@ export function BarChart({
     const scaleX = scaleBand()
         .domain(data.map(({ label }) => label))
         .range([0, width])
-
+        
         .padding(0.5);
+        
     const scaleY = scaleLinear()
         .domain([0, Math.max(...data.map(({ value }) => value))])
         .range([height, 0]);
+    console.log(width);
+    
     return (
         <svg
             className="m-auto"
@@ -154,13 +153,14 @@ export function BarChart({
             height={height + margin.top + margin.bottom}
         >
             <g transform={`translate(${margin.left}, ${margin.top})`}>
-                <text x={width / 2} y={-55} fontSize={20} textAnchor="middle">
+                <text x={width / 2} y={-55} fontSize={20} textAnchor="middle" >
                     {title}
                 </text>
                 <AxisBottom
                     scale={scaleX}
                     transform={`translate(0, ${height})`}
                     xlabel={xlabel}
+                    
                     width={width}
                 />
                 <AxisLeft scale={scaleY} ylabel={ylabel} height={height} />
