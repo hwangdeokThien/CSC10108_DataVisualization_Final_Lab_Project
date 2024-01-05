@@ -14,14 +14,14 @@ import {
 import { arEG } from "date-fns/locale/ar-EG";
 import { join } from "path";
 
-export interface Data {
+export interface DataDBC {
     label: string;
     value1: number;
     value2: number;
 }
 
 interface BarChartProps {
-    data: Data[];
+    data: DataDBC[];
     title: string;
     xlabel: string;
     ylabel: string;
@@ -225,7 +225,7 @@ export function DualBarChart({ data, title, xlabel, ylabel, height, width }: Bar
             width={width + margin.left + margin.right}
             height={height + margin.top + margin.bottom}
         >
-            <g transform={`translate(${xScale(["ProductLine"])},0)`}>
+            <g transform={`translate(${xScale},0)`}>
                 
                 <text x={width / 2} y={-45} fontSize={25} textAnchor="middle">
                     {title}

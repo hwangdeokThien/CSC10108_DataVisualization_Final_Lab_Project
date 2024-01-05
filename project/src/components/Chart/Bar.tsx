@@ -143,9 +143,12 @@ export function BarChart({
         .domain(data.map(({ label }) => label))
         .range([0, width])
         .padding(0.5);
+
     const scaleY = scaleLinear()
         .domain([0, Math.max(...data.map(({ value }) => value))])
         .range([height, 0]);
+    console.log(width);
+
     return (
         <svg
             className="m-auto"
