@@ -107,24 +107,26 @@ function AxisBottom({ scale, transform, xlabel, width }: AxisBottomProps) {
     );
 }
 
-function Bars1({ data, height, scaleX, scaleY }: BarsProps) {
+function Bars1({ height, scaleX, scaleY }: BarsProps) {
     return (
         <>
             {aggregate.map(({ ProductLine, Male }) => (
                 <rect
                     key={`bar-${Male}`}
+                    
                     x={xScale(ProductLine)}
                     y={scaleY(Male)}
                     width={scaleX.bandwidth()}
                     height={height - scaleY(Male)}
                     fill="blue"
+                    opacity={0.5}
                 />
             ))}
         </>
     );
 }
 
-function Bars2({ data, height, scaleX, scaleY }: BarsProps) {
+function Bars2({ height, scaleX, scaleY }: BarsProps) {
     return (
         <>
         
@@ -138,7 +140,7 @@ function Bars2({ data, height, scaleX, scaleY }: BarsProps) {
                     width={scaleX.bandwidth()}
                     height={height - scaleY(Female)}
                     fill="red"
-
+                    opacity={0.5}
 
                 />
             ))}
@@ -194,7 +196,6 @@ const margin = {
 const width = 800;
 const height = 500
 
-
 const xDomain = aggregate.map(d => d["ProductLine"])
 
 const xScale = scaleBand()
@@ -202,22 +203,14 @@ const xScale = scaleBand()
     .range([margin.left, width - margin.right - margin.left])
     .padding(0.5)
 
-
-const xAxis = axisBottom(xScale).tickSizeOuter(0)
-
-const x1 = scaleBand()
-    .domain(keys)
-    .rangeRound([0, xScale.bandwidth()]) // here we use rangeRound instead of range because we're using values computed by xScale, which may not be whole numbers, and we need whole numbers to avoid errors.
-    .padding(0.01)
-
 const yScale = scaleLinear()
-    .domain([0, d3.max(aggregate, d => d3.max(keys, key => d[key]))]) // in each key, look for the maximum number
-    .rangeRound([height - margin.bottom, margin.top])
+    .domain([0, 100]) // in each key, look for the maximum number
+    .range([height, 0]);
+    console.log(width);
 
-const yAxis = d3.axisLeft(yScale).tickSizeOuter(0)
+    //.rangeRound([height - margin.bottom, margin.top])
 
-const color = d3.scaleOrdinal(["red", "blue"])
-export function DualBarChart({ data, title, xlabel, ylabel, height, width }: BarChartProps) {
+export function DualBarChart({ title, xlabel, ylabel, height, width }: BarChartProps) {
     ylabel = "Number of customers"
     return (
         <svg
@@ -237,7 +230,6 @@ export function DualBarChart({ data, title, xlabel, ylabel, height, width }: Bar
                     width={width}
                 />
                 <AxisLeft scale={yScale} ylabel={ylabel} height={height} />
-        
                 <Bars1
                     data={keys}
                     height={height}
