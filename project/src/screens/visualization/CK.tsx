@@ -149,8 +149,8 @@ const CK: React.FC = () => {
                 {BarChart({
                     data: filterDataQ3 || static_data,
                     title: "Statistic",
-                    xlabel: "Year",
-                    ylabel: "Number <br> of <br> orders",
+                    xlabel: "Date",
+                    ylabel: "Number <br> of <br> customers",
                     height: 600,
                     width: 1500,
                 })}
